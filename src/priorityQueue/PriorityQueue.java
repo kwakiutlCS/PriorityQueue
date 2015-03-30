@@ -1,3 +1,5 @@
+package priorityQueue;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +40,11 @@ public class PriorityQueue<T extends Comparable<T>> {
         T elem = queue.remove(--nextIndex);
         update(pos);
         return elem;
+    }
+
+
+    public T get(T e) {
+        return queue.get(positions.get(e));
     }
 
 

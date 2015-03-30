@@ -1,4 +1,5 @@
-import java.util.Comparator;
+import priorityQueue.PriorityQueue;
+
 
 /**
  * Created by ricardo on 30/03/2015.
