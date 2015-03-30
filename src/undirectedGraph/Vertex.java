@@ -22,6 +22,8 @@ public class Vertex {
         return new ArrayList<>(edges);
     }
 
+    public int getV() { return v; }
+
 
     @Override
     public boolean equals(Object o) {
@@ -35,5 +37,10 @@ public class Vertex {
     @Override
     public int hashCode() {
         return v;
+    }
+
+    @Override
+    public String toString() {
+        return v+"";
     }
 }

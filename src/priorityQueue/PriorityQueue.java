@@ -28,6 +28,7 @@ public class PriorityQueue<T extends Comparable<T>> {
         if (nextIndex == 1) return null;
         swap(1, nextIndex-1);
         T elem = queue.remove(--nextIndex);
+        positions.put(elem, null);
         update(1);
         return elem;
     }
@@ -38,13 +39,16 @@ public class PriorityQueue<T extends Comparable<T>> {
         int pos = positions.get(e);
         swap(pos, nextIndex-1);
         T elem = queue.remove(--nextIndex);
+        positions.put(elem, null);
         update(pos);
         return elem;
     }
 
 
     public T get(T e) {
-        return queue.get(positions.get(e));
+        Integer pos = positions.get(e);
+        if (pos == null) return null;
+        return queue.get(pos);
     }
 
 

@@ -18,25 +18,34 @@ public class UndirectedGraph {
     public void addEdge(int v1, int v2, int weight) {
         Edge e = new Edge(v1, v2, weight);
         vertices.get(v1-1).addEdge(e);
-        vertices.get(v2-2).addEdge(e);
+        vertices.get(v2-1).addEdge(e);
     }
 
 
-    public void solve() {
+    public long solve() {
         PriorityQueue<Node> pk = new PriorityQueue<>();
         for (Vertex v : vertices) {
             pk.add(new Node(v, Integer.MAX_VALUE));
         }
 
+        long total = 0;
         while (pk.size() > 0) {
             Node n = pk.remove();
             Vertex v = n.getV();
             long dist = n.getDistance();
+            if (dist == Integer.MAX_VALUE) dist = 0;
+            total += dist;
 
             for (Edge e : v.getEdges()) {
-
+                int other = e.getOther(v.getV());
+                Node otherNode = pk.get(new Node(new Vertex(other), 0));
+                if (otherNode != null && otherNode.getDistance() > e.getWeigth()) {
+                    otherNode.setDistance(e.getWeigth());
+                    pk.update(otherNode);
+                }
             }
         }
+        return total;
     }
 
 
@@ -82,6 +91,11 @@ public class UndirectedGraph {
         @Override
         public int hashCode() {
             return v.hashCode();
+        }
+
+        @Override
+        public String toString() {
+            return v.toString();
         }
     }
 }

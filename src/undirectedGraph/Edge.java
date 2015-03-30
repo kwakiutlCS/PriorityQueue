@@ -12,4 +12,11 @@ public class Edge {
         vertices[1] = v2;
         weigth = w;
     }
+
+    public int getWeigth() { return weigth; }
+
+    public int getOther(int v) {
+        if (vertices[0] == v) return vertices[1];
+        return vertices[0];
+    }
 }
